@@ -8,5 +8,7 @@ More : http://en.wikipedia.org/wiki/Palindrome
 ## Usage
 
 `python`
+
 `>>>from palindrome import Palindrome`
+
 `>>>Palindrome().main()`
