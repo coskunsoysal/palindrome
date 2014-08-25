@@ -8,17 +8,17 @@ except ImportError:
 
 import unittest
 
-class AnagramTests(unittest.TestCase):
+class PalindromeTests(unittest.TestCase):
     def test_no_matches(self):
         self.assertEqual(
             False,
-            Anagram().is_anagram_of('bowery', 'bowfin')
+            Palindrome().is_palindrome_of('bowery', 'bowfin')
         )
 
     def test_detect_simple_anagram(self):
         self.assertEqual(
             True,
-            Anagram().is_anagram_of('adders', 'dreads')
+            Palindrome().is_palindrome_of('adders', 'sredda')
         )
 
 if __name__ == '__main__':
