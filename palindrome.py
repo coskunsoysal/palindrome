@@ -16,32 +16,24 @@ class Palindrome(object):
         """
         self._DEFAULT_FILE = "wordsEn.txt"
         self.result = ""
-        self.words_by_count = defaultdict(list)
 
     def main(self):
+        """
+         Main method of palindrome class
+        :return:
+        """
         file = raw_input("Enter file name: ") or self._DEFAULT_FILE
         self.file = file
         list_of_words = self.file2words(self.file)
 
-        for word in list_of_words:
-            self.words_by_count[len(word)].append(word)
-        del list_of_words
-
         count = 0
-        for wc in self.words_by_count:
-            for word in self.words_by_count[wc]:
-                first = False
-                del self.words_by_count[wc][0]
-                for word2 in self.words_by_count[wc]:
-                    if self.is_palindrome_of(word, word2):
-                        if first == False:
-                            count=count+1
-                            self.result += "".join([str(count), "   ", word, "   ", word2, "\n"])
-                            print "".join([str(count), "   ", word, "   ", word2, "\n"])
-                            first=True
-                        else:
-                            self.result += "".join(["      ", word2, "\n"])
-                            print "".join(["      ", word2, "\n"])
+        for word in list_of_words:
+            if self.is_palindrome_of(word):
+                self.result += "".join([str(count), "   ", word, "   ", word[::-1], "\n"])
+                print "".join([str(count), "   ", word, "   ", word[::-1], "\n"])
+                count += 1
+
+        del list_of_words
 
         self.write_to_file("result.txt",self.result)
 
@@ -61,14 +53,14 @@ class Palindrome(object):
             print "%s is not a valid file." % file
             sys.exit()
 
-    def is_palindrome_of(self, word1, word2):
+    def is_palindrome_of(self, word):
         """
         Compare two words for palindrome test
         :param word1:
         :param word2:
         :return: True or False if they are palindrome
         """
-        return word1 == word2[::-1]
+        return word == word[::-1]
 
     def write_to_file(self, filename, palindromes):
         """
